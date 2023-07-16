@@ -25,7 +25,7 @@ gen:
 .PHONY: tags
 tags:
 	@for name in $(NAMES); do \
-  		version=$$(cat $(CURDIR)/proto/$$name/v) && echo "work with $$name and $$version" && \
+  		version=$$(cat $(CURDIR)/proto/$$name/version) && echo "work with $$name and $$version" && \
   		tag=gen/go/$$name/v$$version && echo "tag: $$tag" && \
   		if [[ ! $$(git tag -l "$$tag") ]]; then \
   		  	git tag -a "$$tag" -m "" && \
