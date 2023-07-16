@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package auth.role.v1;
+
+option go_package = "github.com/theartofedu/grpc-contracts-repo/gen/go/auth/role/v1;pb_auth_role";
+
+import "auth/role/v1/privilege.proto";
+
+message Role {
+  uint64 id = 1;
+  string name = 2;
+  repeated Privilege privileges = 3;
+}

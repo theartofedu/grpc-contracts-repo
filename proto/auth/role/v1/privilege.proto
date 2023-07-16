@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package auth.role.v1;
+
+option go_package = "github.com/theartofedu/grpc-contracts-repo/gen/go/auth/role/v1;pb_auth_role";
+
+enum Privilege {
+  PRIVILEGE_UNSPECIFIED = 0;
+  PRIVILEGE_READ = 1;
+  PRIVILEGE_UPDATE = 2;
+  PRIVILEGE_DELETE = 3;
+}

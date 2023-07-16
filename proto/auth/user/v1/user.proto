@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package auth.user.v1;
+
+option go_package = "github.com/theartofedu/grpc-contracts-repo/gen/go/auth/user/v1;pb_auth_user";
+
+import "auth/role/v1/role.proto";
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  repeated auth.role.v1.Role roles = 4;
+  uint64 created_at = 5;
+  uint64 updated_at = 6;
+}

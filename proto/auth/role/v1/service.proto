@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package auth.role.v1;
+
+option go_package = "github.com/theartofedu/grpc-contracts-repo/gen/go/auth/role/v1;pb_auth_role";
+
+import "auth/role/v1/role.proto";
+
+service RoleService {
+  rpc All (RoleServiceAllRequest) returns (RoleServiceAllResponse);
+  rpc ByID (RoleServiceByIDRequest) returns (RoleServiceByIDResponse);
+  rpc Create (RoleServiceCreateRequest) returns (RoleServiceCreateResponse);
+  rpc Update (RoleServiceUpdateRequest) returns (RoleServiceUpdateResponse);
+}
+
+message RoleServiceAllRequest {}
+
+message RoleServiceAllResponse {
+  repeated Role roles = 1;
+}
+
+message RoleServiceByIDRequest {
+  uint64 id = 1;
+}
+
+message RoleServiceByIDResponse {
+  Role role = 1;
+}
+
+message RoleServiceCreateRequest {
+  uint64 id = 1;
+  string name = 2;
+}
+
+message RoleServiceCreateResponse {}
+
+message RoleServiceUpdateRequest {
+  uint64 id = 1;
+  string name = 2;
+}
+
+message RoleServiceUpdateResponse {}

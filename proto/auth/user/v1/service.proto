@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package auth.user.v1;
+
+option go_package = "github.com/theartofedu/grpc-contracts-repo/gen/go/auth/user/v1;pb_auth_user";
+
+import "auth/user/v1/user.proto";
+
+service UserService {
+  rpc All (UserServiceAllRequest) returns (UserServiceAllResponse);
+  rpc ByID (UserServiceByIDRequest) returns (UserServiceByIDResponse);
+  rpc Create (UserServiceCreateRequest) returns (UserServiceCreateResponse);
+  rpc Update (UserServiceUpdateRequest) returns (UserServiceUpdateResponse);
+}
+
+message UserServiceCreateRequest {
+  string name = 1;
+  string email = 2;
+  repeated uint64 roles = 3;
+}
+
+message UserServiceCreateResponse {}
+
+message UserServiceUpdateRequest {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  repeated uint64 roles = 4;
+}
+
+message UserServiceUpdateResponse {}
+
+message UserServiceByIDRequest {
+  string id = 1;
+}
+
+message UserServiceByIDResponse {
+  User user = 1;
+}
+
+message UserServiceAllRequest {}
+
+message UserServiceAllResponse {
+  repeated User user = 1;
+}
