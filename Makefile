@@ -19,7 +19,7 @@ gen:
 	@$(GOPATH)/bin/buf generate
 	@for name in $(NAMES); do \
   		cd $(CURDIR)/gen/go/$$name && \
-  		go mod init github.com/theartofedu/grpc-contracts-repo/$$name && go mod tidy; \
+  		go mod init github.com/theartofedu/grpc-contracts-repo/gen/go/$$name && go mod tidy; \
   	done
 
 .PHONY: tags
