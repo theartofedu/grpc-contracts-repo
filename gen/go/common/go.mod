@@ -1,4 +1,4 @@
-module github.com/theartofedu/grpc-contracts-repo/gen/go/auth
+module github.com/theartofedu/grpc-contracts-repo/gen/go/common
 
 go 1.20
 

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package common.events.v1;
+
+option go_package = "github.com/theartofedu/grpc-contracts-repo/gen/go/common/events/v1;pb_common_events";
+
+// Event type.
+enum EventType {
+  EVENT_TYPE_UNSPECIFIED = 0;
+  EVENT_TYPE_HOLIDAY = 1;
+  EVENT_TYPE_WEEKEND = 2;
+  EVENT_TYPE_OTHER = 3;
+}
+
+message Event {
+  // Identifier of event.
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  EventType type = 4;
+  uint64 date = 5;
+}
+
+message CreateEvent {
+  string name = 1;
+  string description = 2;
+  EventType type = 3;
+  uint64 date = 4;
+}

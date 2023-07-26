@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package common.events.v1;
+
+option go_package = "github.com/theartofedu/grpc-contracts-repo/gen/go/common/events/v1;pb_common_events";
+
+import "common/events/v1/event.proto";
+
+service EventService {
+  // simple RPC.
+  rpc Event (EventRequest) returns (EventResponse);
+  // server-side stream - client send request and server start sends stream of events.
+  rpc NewEvents (NewEventsRequest) returns (stream NewEventsResponse);
+  // client side stream - client opens stream, send messages, than waits until server read them all and send response.
+  rpc RecordUserEvents (stream RecordUserEventsRequest) returns (RecordUserEventsResponse);
+  // both sides stream - both sides send messages in any order.
+  rpc Events (stream EventsRequest) returns (stream EventsResponse);
+}
+
+// Get single event by id.
+message EventRequest {
+  string event_id = 1;
+}
+message EventResponse {
+  Event data = 1;
+}
+
+// Get New Events since a given date.
+message NewEventsRequest {
+  uint64 since = 1;
+}
+message NewEventsResponse {
+  Event data = 1;
+}
+
+// Record User Events stream.
+message RecordUserEventsRequest {
+  repeated Event data = 1;
+}
+message RecordUserEventsResponse {
+  bool ok = 1;
+}
+
+// Events stream.
+message EventsRequest {
+
+}
+message EventsResponse {
+  Event data = 1;
+}
