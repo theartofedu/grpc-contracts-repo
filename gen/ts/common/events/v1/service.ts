@@ -79,6 +79,10 @@ export interface RecordUserEventsResponse {
  * @generated from protobuf message common.events.v1.EventsRequest
  */
 export interface EventsRequest {
+    /**
+     * @generated from protobuf field: common.events.v1.Event data = 1;
+     */
+    data?: Event;
 }
 /**
  * @generated from protobuf message common.events.v1.EventsResponse
@@ -374,7 +378,9 @@ export const RecordUserEventsResponse = new RecordUserEventsResponse$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class EventsRequest$Type extends MessageType<EventsRequest> {
     constructor() {
-        super("common.events.v1.EventsRequest", []);
+        super("common.events.v1.EventsRequest", [
+            { no: 1, name: "data", kind: "message", T: () => Event }
+        ]);
     }
     create(value?: PartialMessage<EventsRequest>): EventsRequest {
         const message = {};
@@ -384,9 +390,28 @@ class EventsRequest$Type extends MessageType<EventsRequest> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: EventsRequest): EventsRequest {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* common.events.v1.Event data */ 1:
+                    message.data = Event.internalBinaryRead(reader, reader.uint32(), options, message.data);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message: EventsRequest, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* common.events.v1.Event data = 1; */
+        if (message.data)
+            Event.internalBinaryWrite(message.data, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

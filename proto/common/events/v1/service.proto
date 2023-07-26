@@ -43,7 +43,7 @@ message RecordUserEventsResponse {
 
 // Events stream.
 message EventsRequest {
-
+  Event data = 1;
 }
 message EventsResponse {
   Event data = 1;

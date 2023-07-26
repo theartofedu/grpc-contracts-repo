@@ -22,6 +22,7 @@ tags:
   		  	git push origin "$$tag" -o ci.skip; \
 		fi; \
 	done
+	@git push --tags
 
 .PHONY: lint
 lint:
